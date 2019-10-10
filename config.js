@@ -1,7 +1,7 @@
 module.exports = {
   MAYA: {
-    host: 'localhost',
-    user: 'GAMY',
+    socketPath: 'MaS'
+    user: 'GAMA',
     password: 'lamelmard',
     database : 'rom_test'
   },
