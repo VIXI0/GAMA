@@ -1,7 +1,7 @@
 {
-  "name": "GAMY",
+  "name": "GAMA",
   "version": "1.0.0",
-  "description": "graphql api mysql",
+  "description": "GraphQl Api Server (integrated with express, JWT & MariaDB)",
   "main": "index.js",
   "repository": "https://github.com/VIXI0/GAMY.git",
   "author": "VIXI0 <mickycanela@gmail.com>",
@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "graphql": "^14.5.8",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.17.1",
+    "mariadb": "^2.1.1",
     "nodemon": "^1.19.3",
     "pkg": "^4.4.0"
   }
