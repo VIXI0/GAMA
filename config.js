@@ -1,6 +1,6 @@
 module.exports = {
   MAYA: {
-    socketPath: 'MaS'
+    socketPath: '\\\\.\\pipe\\MaS',
     user: 'GAMA',
     password: 'lamelmard',
     database : 'rom_test'
