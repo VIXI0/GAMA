@@ -3,8 +3,11 @@
 const maria = require('mariadb');
 const { MAYA } = require('../config.js');
 const util = require('util');
-let MaS = () => {};
+let conection;
 
+let MaS = () => {
+  return conection;
+};
 
 
 let connect = async () => {
@@ -16,7 +19,7 @@ await maria.createConnection(MAYA).then(conn => {
   .catch(err => {
     console.error('ping: ', err);
   })
-  MaS = conn;  })
+  conection = conn;  })
   .catch(err => { console.error('creatingConnection: ', err); });
 }
 
