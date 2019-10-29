@@ -1,149 +1,142 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 module.exports = gql`
-type Query {
+  type Query {
+    hello: String
+    greet(name: String): String
 
-  hello: String
-  greet(name: String): String
+    Suplidores: [Suplidor]!
+    SuplidoresAll: [Suplidor]!
+    Productos: [Producto]!
+    ProductosAll: [Producto]!
+    marcas: [marca]!
+    marcasAll: [marca]!
+    usuarios: [usuario]!
+    roles: [role]
+    getRole: role!
+    currentU: String!
+    backs: [back]!
+    logout: String
+  }
 
+  type Suplidor {
+    _id: ID
+    nombre: String
+    direccion: String
+    telefono: [String]
+    rnc: String
+    ncf: String
+    Representante: String
+    telefonor: [String]
+    anotaciones: String
+    active: Boolean
+  }
 
-  Suplidores: [Suplidor]!
-  SuplidoresAll: [Suplidor]!
-  Productos: [Producto]!
-  ProductosAll: [Producto]!
-  marcas: [marca]!
-  marcasAll: [marca]!
-  usuarios: [usuario]!
-  roles: [role]
-  getRole: role!
-  currentU: String!
-  backs: [back]!
-  logout: String
-}
+  type Producto {
+    _id: ID
+    nombre: String
+    marca: String
+    ref: String
+    image: String
+    descripcion: String
+    location: String
+    cantidad: Float
+    unidad: String
+    Suplidor_primario: String
+    active: Boolean
+  }
 
-type Suplidor {
-  _id: ID
-  nombre: String
-  direccion: String
-  telefono: [String]
-  rnc: String
-  ncf: String
-  Representante: String
-  telefonor: [String]
-  anotaciones: String
-  active: Boolean
-}
+  type usuario {
+    _id: ID
+    user: String
+    password: String
+    active: Boolean
+    role: ID
+  }
 
-type Producto {
-  _id: ID
-  nombre: String
-  marca: String
-  ref: String
-  image: String
-  descripcion: String
-  location: String
-  cantidad: Float
-  unidad: String
-  Suplidor_primario: String
-  active: Boolean
-}
+  type role {
+    role_id: ID
+    role_name: String
+    permission: [sistema]
+    active: Boolean
+  }
 
+  type sistema {
+    sistema: String
+    link: String
+    menu: [menu]
+  }
 
+  type menu {
+    titulo: String
+    menu: Boolean
+    sub: [sub]
+  }
 
-type usuario {
-  _id: ID
-  user: String
-  password: String
-  active: Boolean
-  role: ID
-}
+  type sub {
+    tipo: String
+    titulo: String
+    link: String
+    href: String
+    target: String
+    c: Boolean
+    r: Boolean
+    u: Boolean
+    d: Boolean
+    a: Boolean
+    sub: [sub2]
+  }
 
-type role {
-  role_id: ID
-  role_name: String
-  permission: [sistema]
-  active: Boolean
-}
+  type sub2 {
+    tipo: String
+    titulo: String
+    link: String
+    href: String
+    target: String
+    c: Boolean
+    r: Boolean
+    u: Boolean
+    d: Boolean
+    a: Boolean
+    sub: [sub3]
+  }
 
-type sistema {
-  sistema: String
-  link: String
-  menu: [menu]
-}
+  type sub3 {
+    tipo: String
+    titulo: String
+    link: String
+    href: String
+    target: String
+    c: Boolean
+    r: Boolean
+    u: Boolean
+    d: Boolean
+    a: Boolean
+  }
 
-type menu {
-  titulo: String
-  menu: Boolean
-  sub: [sub]
-}
+  type marca {
+    _id: ID
+    nombre: String!
+    active: Boolean
+  }
 
-type sub {
-  tipo: String
-  titulo: String
-  link: String
-  href: String
-  target: String
-  c: Boolean
-  r: Boolean
-  u: Boolean
-  d: Boolean
-  a: Boolean
-  sub: [sub2]
-}
+  type back {
+    _id: ID
+    user: String
+    date: String
+    location: String
+  }
 
-type sub2 {
-  tipo: String
-  titulo: String
-  link: String
-  href: String
-  target: String
-  c: Boolean
-  r: Boolean
-  u: Boolean
-  d: Boolean
-  a: Boolean
-  sub: [sub3]
-}
-
-type sub3 {
-  tipo: String
-  titulo: String
-  link: String
-  href: String
-  target: String
-  c: Boolean
-  r: Boolean
-  u: Boolean
-  d: Boolean
-  a: Boolean
-}
-
-type marca {
-  _id: ID
-  nombre: String!
-  active: Boolean
-}
-
-type back {
-  _id: ID
-  user: String
-  date: String
-  location: String
-}
-
-type createAnswer {
-  _id: ID
-  done: Boolean
-}
+  type createAnswer {
+    _id: ID
+    done: Boolean
+  }
   type Mutation {
-
-
     createUser(input: UsuarioInput): Boolean
     login(input: UsuarioInput): String
 
     createRole(input: RoleInput): Boolean
     updateRole(_id: ID, input: RoleInput): Boolean
-
 
     createSuplidor(input: SuplidorInput): createAnswer
     updateSuplidor(_id: ID, input: SuplidorInput): Boolean
@@ -160,7 +153,6 @@ type createAnswer {
     uploadImage(image: Upload!): Boolean
   }
 
-
   input UsuarioInput {
     username: String!
     password: String!
@@ -170,7 +162,6 @@ type createAnswer {
     nombre: String
     permisos: [sistemaM]
   }
-
 
   input sistemaM {
     sistema: String
